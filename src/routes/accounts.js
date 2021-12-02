@@ -7,9 +7,14 @@ module.exports = (app) => {
    };
 
    const getAll = (req, res) => {
-       app.services.account.findAll()
+        app.services.account.findAll()
         .then(result => res.status(200).json(result));
    };
 
-   return { create, getAll };
+   const get = (req, res) => {
+        app.services.account.find({id: req.params.id})
+            .then(result => res.status(200).json(result));
+   }
+
+   return { create, getAll, get };
 };
